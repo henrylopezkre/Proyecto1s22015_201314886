@@ -33,7 +33,6 @@ public class AVLTree {
         if(isEmpty()){
             auxNode = new TreeNode();
             auxNode.object = object;
-            auxNode.num = count;
             auxNode.fatherNode = auxNode;
             auxNode.leftNode = null;
             auxNode.rightNode = null;
@@ -47,7 +46,6 @@ public class AVLTree {
                     if(auxNode.leftNode == null){
                         auxNode.leftNode = new TreeNode();
                         auxNode.leftNode.object = object;
-                        auxNode.leftNode.num = count;
                         System.out.println("Izquierdo: " + auxNode.leftNode.object);
                         auxNode.leftNode.fatherNode = auxNode;
                         auxNode = auxNode.leftNode;
@@ -62,7 +60,6 @@ public class AVLTree {
                     if(auxNode.rightNode == null){
                         auxNode.rightNode = new TreeNode();
                         auxNode.rightNode.object = object;
-                        auxNode.rightNode.num = count;
                         System.out.println("Derecho: " + auxNode.rightNode.object);
                         auxNode.rightNode.fatherNode = auxNode;
                         auxNode = auxNode.rightNode;
@@ -78,7 +75,27 @@ public class AVLTree {
             }
         }
         this.balance(this.rootNode);
+        System.out.println(count);
+        if(count > 1){
+            this.rootNode = rotationRR(this.rootNode, this.rootNode.rightNode);;
+        }
         this.count++;
+    }
+    //Rotación derecha-derecha
+    public TreeNode rotationRR(TreeNode n, TreeNode n1){
+        n.rightNode = n1.leftNode;
+        n1.leftNode = n;
+        if(n1.balanceFactor == 1){
+            n.balanceFactor = 0;
+            n1.balanceFactor = 0;
+        }else{
+            n.balanceFactor = 1;
+            n1.balanceFactor = -1;
+        }
+        //
+        n.fatherNode = n1;
+        n1.fatherNode = n1;
+        return n1;
     }
     //Obtener altura desde un nodo
     public int height(TreeNode node){
@@ -100,7 +117,7 @@ public class AVLTree {
         if(node != null){
             int heightLeft = height(node.leftNode);
             int heightRight = height(node.rightNode);
-            node.balance = heightRight - heightLeft;
+            node.balanceFactor = heightRight - heightLeft;
             balance(node.leftNode);
             balance(node.rightNode);
         }
@@ -108,9 +125,10 @@ public class AVLTree {
     private void print(TreeNode node){
         if(node != null){
             print(node.leftNode);
-            printWriter.print("\t tn_avlt" + node.num + "[label = \"{ <e> | Valor. " + node.object + " \n f.e. " + node.balance + "| <p> }\", style=\"filled\", color=\"black\", fillcolor=\"skyblue\"]; \n");
-            if(node.fatherNode.num != node.num){
-                printWriter.print("\t tn_avlt" + node.fatherNode.num + ":p -> tn_avlt"+ node.num + ":e; \n");
+            printWriter.print("\t tn_avlt" + node.object + "[label = \"{ <e> | Valor. " + node.object + " \n f.e. " + node.balanceFactor + "| <p> }\", style=\"filled\", color=\"black\", fillcolor=\"skyblue\"]; \n");
+            System.out.println("Padre: " + node.fatherNode.object + " Nodo: " + node.object);
+            if(node.fatherNode.object != node.object){
+                printWriter.print("\t tn_avlt" + node.fatherNode.object + ":p -> tn_avlt"+ node.object + ":e; \n");
             }
             count++;
             print(node.rightNode);
@@ -150,17 +168,16 @@ public class AVLTree {
     }
 }
 class TreeNode{
-    public int num;
     public int object;
     public TreeNode fatherNode;
     public TreeNode rightNode;
     public TreeNode leftNode;
-    public int balance;
+    public int balanceFactor;
     public TreeNode(){
         this.fatherNode = null;
         this.leftNode = null;
         this.rightNode = null;
         this.object = 0;
-        this.num = 0;
+        this.balanceFactor = 0;
     }
 }
