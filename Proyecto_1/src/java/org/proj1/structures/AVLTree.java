@@ -77,7 +77,7 @@ public class AVLTree {
         this.balance(this.rootNode);
         System.out.println(count);
         if(count > 1){
-            this.rootNode = rotationRR(this.rootNode, this.rootNode.rightNode);;
+            this.rootNode = rotationRL(this.rootNode, this.rootNode.rightNode);
         }
         this.count++;
     }
@@ -93,9 +93,70 @@ public class AVLTree {
             n1.balanceFactor = -1;
         }
         //
-        n.fatherNode = n1;
-        n1.fatherNode = n1;
+        n.fatherNode = n1.fatherNode = n1;
         return n1;
+    }
+    //Rotación izquierda-izquierda
+    public TreeNode rotationLL(TreeNode n, TreeNode n1){
+        n.leftNode = n1.rightNode;
+        n1.rightNode = n;
+        if(n1.balanceFactor == -1){
+            n.balanceFactor = 0;
+            n1.balanceFactor = 0;
+        }else{
+            n.balanceFactor = -1;
+            n1.balanceFactor = 1;
+        }
+        //
+        n.fatherNode = n1.fatherNode = n1;
+        return n1;
+    }
+    //Rotación izquierda-derecha
+    public TreeNode rotationLR(TreeNode n, TreeNode n1){
+        TreeNode n2;
+        n2 = n1.rightNode;
+        //Rotación izquierda-izquierda
+        n.leftNode = n2.rightNode;
+        n2.rightNode = n;
+        //Rotación derecha-derecha
+        n1.rightNode = n2.leftNode;
+        n2.leftNode = n1;
+        if(n2.balanceFactor == 1){
+            n1.balanceFactor = -1;
+        }else{
+            n1.balanceFactor = 0;
+        }
+        if(n2.balanceFactor == -1){
+            n.balanceFactor = 1;
+        }else{
+            n.balanceFactor = 0;
+        }
+        n2.balanceFactor = 0;
+        n.fatherNode = n1.fatherNode = n2.fatherNode = n2;
+        return n2;
+    }
+    public TreeNode rotationRL(TreeNode n, TreeNode n1){
+        TreeNode n2;
+        n2 = n1.leftNode;
+        //Rotación derecha-derecha
+        n.rightNode = n2.leftNode;
+        n2.leftNode = n;
+        //Rotación izquierda-izquierda
+        n1.leftNode = n2.rightNode;
+        n2.rightNode = n1;
+        if(n2.balanceFactor == 1){
+            n.balanceFactor = -1;
+        }else{
+            n.balanceFactor = 0;
+        }
+        if(n2.balanceFactor == -1){
+            n1.balanceFactor = 1;
+        }else{
+            n1.balanceFactor = 0;
+        }
+        n2.balanceFactor = 0;
+        n.fatherNode = n1.fatherNode = n2.fatherNode = n2;
+        return n2;
     }
     //Obtener altura desde un nodo
     public int height(TreeNode node){

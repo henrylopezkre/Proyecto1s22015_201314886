@@ -21,9 +21,9 @@ public class Prueba extends javax.swing.JFrame {
     AVLTree avl = new AVLTree();
     public Prueba() {
         initComponents();
+        avl.add(1);
         avl.add(3);
-        avl.add(6);
-        avl.add(9);
+        avl.add(2);
         //avl.add(2);
         //avl.add(10);
         //avl.add(1);
