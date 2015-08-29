@@ -74,12 +74,28 @@ public class AVLTree {
                 }
             }
         }
+        //Colocar factor de equilibrio en cada nodo
         this.balance(this.rootNode);
-        System.out.println(count);
+        /*System.out.println(count);
         if(count > 1){
             this.rootNode = rotationRL(this.rootNode, this.rootNode.rightNode);
-        }
+        }*/
         this.count++;
+    }
+    public void equilibrate(TreeNode node){
+        if(node != null){
+            //Rotación izquierda-izquierda
+            if(node.balanceFactor == -2 && node.leftNode.balanceFactor == -1){
+                
+            //Rotación derecha-derecha
+            }else if(node.balanceFactor == 2 && node.rightNode.balanceFactor == 1){
+            //Rotación derecha-izquierda
+            }else if(node.balanceFactor == 2 && node.rightNode.balanceFactor == -1){
+            //Rotación izquierda-derecha
+            }else if(node.balanceFactor == -2 && node.leftNode.balanceFactor == 1){
+            
+            }
+        }        
     }
     //Rotación derecha-derecha
     public TreeNode rotationRR(TreeNode n, TreeNode n1){
