@@ -20,15 +20,21 @@ public class Prueba extends javax.swing.JFrame {
      */
     AVLTree avl = new AVLTree();
     public Prueba() {
-        initComponents();
-        avl.add(1);
-        avl.add(3);
-        avl.add(2);
-        //avl.add(2);
-        //avl.add(10);
-        //avl.add(1);
-        //avl.add(7);
-        //avl.add(5);
+        try {
+            initComponents();
+            avl.add(30);
+            avl.add(10);
+            avl.add(34);
+            avl.add(90);
+            avl.add(100);
+            //avl.add(2);
+            //avl.add(10);
+            //avl.add(1);
+            //avl.add(7);
+            //avl.add(5);
+        } catch (Exception ex) {
+            Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

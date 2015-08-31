@@ -7,13 +7,19 @@ digraph G {
 
 	 label = "Árbol AVL"; 
 
-	 tn_avlt1[label = "{ <e> | Valor. 1 
+	 tn_avlt10[label = "{ <e> | Valor. 10 
  f.e. 0| <p> }", style="filled", color="black", fillcolor="skyblue"]; 
-	 tn_avlt2:p -> tn_avlt1:e; 
-	 tn_avlt2[label = "{ <e> | Valor. 2 
+	 tn_avlt30:p -> tn_avlt10:e; 
+	 tn_avlt30[label = "{ <e> | Valor. 30 
+ f.e. 1| <p> }", style="filled", color="black", fillcolor="skyblue"]; 
+	 tn_avlt34[label = "{ <e> | Valor. 34 
  f.e. 0| <p> }", style="filled", color="black", fillcolor="skyblue"]; 
-	 tn_avlt3[label = "{ <e> | Valor. 3 
+	 tn_avlt90:p -> tn_avlt34:e; 
+	 tn_avlt90[label = "{ <e> | Valor. 90 
  f.e. 0| <p> }", style="filled", color="black", fillcolor="skyblue"]; 
-	 tn_avlt2:p -> tn_avlt3:e; 
+	 tn_avlt30:p -> tn_avlt90:e; 
+	 tn_avlt100[label = "{ <e> | Valor. 100 
+ f.e. 0| <p> }", style="filled", color="black", fillcolor="skyblue"]; 
+	 tn_avlt90:p -> tn_avlt100:e; 
 	 } 
 	 } 
