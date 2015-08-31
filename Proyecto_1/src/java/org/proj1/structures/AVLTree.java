@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,15 +29,13 @@ public class AVLTree {
         return this.rootNode == null;
     }
     //Agregar 
-    /*public void add(int object){
+    public void add(int object){
         boolean verify = false;
         TreeNode auxNode;
         if(isEmpty()){
             auxNode = new TreeNode();
             auxNode.object = object;
             auxNode.fatherNode = auxNode;
-            auxNode.leftNode = null;
-            auxNode.rightNode = null;
             this.rootNode = auxNode;
             System.out.println("Raíz:" + this.rootNode.object);
             verify = true;
@@ -49,9 +49,6 @@ public class AVLTree {
                         System.out.println("Izquierdo: " + auxNode.leftNode.object);
                         auxNode.leftNode.fatherNode = auxNode;
                         auxNode = auxNode.leftNode;
-                        auxNode.leftNode = null;
-                        auxNode.rightNode = null;
-                        
                         verify = true;
                     }else{
                         auxNode = auxNode.leftNode;
@@ -63,8 +60,6 @@ public class AVLTree {
                         System.out.println("Derecho: " + auxNode.rightNode.object);
                         auxNode.rightNode.fatherNode = auxNode;
                         auxNode = auxNode.rightNode;
-                        auxNode.leftNode = null;
-                        auxNode.rightNode = null;
                         verify = true;
                     }else{
                         auxNode = auxNode.rightNode;
@@ -75,14 +70,12 @@ public class AVLTree {
             }
         }
         //Colocar factor de equilibrio en cada nodo
-        this.balance(this.rootNode);
-        System.out.println(count);
-        if(count > 1){
-            this.rootNode = rotationRL(this.rootNode, this.rootNode.rightNode);
-        }
-        this.count++;
-    }*/
-    public void add(int object) throws Exception{
+        this.balance(this.rootNode);   
+        TreeNode n = this.equilibrate(this.rootNode);
+        System.out.println("Soy la raíz: " + n.object);
+        this.rootNode = n;
+    }
+    /*public void add(int object) throws Exception{
         Logical l = new Logical(false);
         int o = object;
         this.rootNode = insertNode(this.rootNode, o, l, 0); 
@@ -140,88 +133,56 @@ public class AVLTree {
             TreeNode auxLeft;
             auxLeft = insertNode(root, object, l, 1);
             this.balance(this.rootNode);
-            System.out.println("Actual izquierdo: " + auxLeft.object + " fe: " + auxLeft.balanceFactor);
-            l.setResp(true);
-            if(l.isResp()){
-                switch(auxLeft.balanceFactor){
-                    /*case 2:
-                        auxLeft.balanceFactor = 0;
-                        l.setResp(false);
-                        break;
-                    case 0:
-                        auxLeft.balanceFactor = -1;
-                        break;*/
-                    case -2:
-                        TreeNode auxRoot = auxLeft.fatherNode;
-                        TreeNode n = auxLeft;
-                        TreeNode n1 = auxLeft.leftNode;
-                        if(n1.balanceFactor == -1){
-                            auxLeft = rotationLL(n, n1);
-                            System.out.println("Soy el  nuevo " + auxLeft.object);
-                            auxRoot.leftNode = auxLeft;
-                            auxLeft.fatherNode = auxRoot;
-                        }
-                        l.setResp(false);
-                        break;
-                }
-            }
+            //System.out.println("Actual izquierdo: " + auxLeft.object + " fe: " + auxLeft.balanceFactor);
         }else if(object > root.object){
             TreeNode auxRight;
             auxRight = insertNode(root, object, l, 2);
-            this.balance(this.rootNode);
-            System.out.println("Actual derecho: " + auxRight.object + " fe: " + auxRight.balanceFactor);
-            l.setResp(true);
-            if(l.isResp()){
-                switch(auxRight.balanceFactor){
-                    case 2:
-                        TreeNode auxRoot = auxRight.fatherNode;
-                        TreeNode n = auxRight;
-                        TreeNode n1 = auxRight.rightNode;
-                        if(n1.balanceFactor == +1){
-                            auxRight = rotationRR(n, n1);
-                            System.out.println("Soy el  nuevo " + auxRight.object);
-                            auxRoot.rightNode = auxRight;
-                            auxRight.fatherNode = auxRoot;
-                        }
-                        l.setResp(false);
-                    break;
-                    /*case 0:
-                        auxRight.balanceFactor = +1;
-                        break;
-                    case -1:
-                        auxRight.balanceFactor = 0;
-                        l.setResp(false);
-                        break;*/
-                }
-            }
-        }else if(object == auxNode.object){
+            //System.out.println("Actual derecho: " + auxRight.object + " fe: " + auxRight.balanceFactor);
+            
+        }else if(object == root.object){
             throw new Exception("No pueden haber claves repetidas");
         }
         }
         this.balance(this.rootNode);
+        this.rootNode = this.equilibrate(this.rootNode);
         return root;
-    }
+    }*/
     
     public TreeNode equilibrate(TreeNode node){
+        TreeNode auxNode = null;
         if(node != null){
-            TreeNode right = equilibrate(node.rightNode);
-            if(right.balanceFactor == 2 && right.rightNode.balanceFactor == 1){
-                node.rightNode = rotationRR(right, right.rightNode);
+            auxNode = node;
+            switch(auxNode.balanceFactor){
+                case 2:
+                    TreeNode n1 = auxNode.rightNode;
+                    if(n1.balanceFactor == +1){
+                        TreeNode auxRoot = auxNode.fatherNode;
+                        TreeNode n = node;
+                        TreeNode aux = null;
+                        if(n1.leftNode != null){
+                            aux = n1.leftNode;
+                        }
+                        auxNode = rotationRR(n, n1);
+                        if(auxRoot.object != this.rootNode.object){
+                            System.out.println("Si entro acá");
+                            auxRoot.rightNode = auxNode;
+                            auxNode.fatherNode = auxRoot;
+                        }
+                        if(aux != null){
+                            this.add(aux.object);
+                        }
+                        System.out.println("Esto devuelvo1: " + auxNode.object);
+                    }else{
+                        TreeNode n = auxNode.fatherNode;
+                        auxNode.rightNode = equilibrate(auxNode.rightNode);
+                        
+                        System.out.println("Esto devuelvo2: " + auxNode.object);
+                    }
+                    
+                    break;
             }
-            /*//Rotación izquierda-izquierda
-            if(node.balanceFactor == -2 && node.leftNode.balanceFactor == -1){
-                
-            //Rotación derecha-derecha
-            }else if(node.balanceFactor == 2 && node.rightNode.balanceFactor == 1){
-                
-            //Rotación derecha-izquierda
-            }else if(node.balanceFactor == 2 && node.rightNode.balanceFactor == -1){
-            //Rotación izquierda-derecha
-            }else if(node.balanceFactor == -2 && node.leftNode.balanceFactor == 1){
-            
-            }*/
         }      
-        return node;
+        return auxNode;
     }
     //Rotación derecha-derecha
     public TreeNode rotationRR(TreeNode n, TreeNode n1){

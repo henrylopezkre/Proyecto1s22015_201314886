@@ -27,11 +27,11 @@ public class Prueba extends javax.swing.JFrame {
             avl.add(34);
             avl.add(90);
             avl.add(100);
-            //avl.add(2);
+            //avl.add(150);
             //avl.add(10);
             //avl.add(1);
-            //avl.add(7);
             //avl.add(5);
+            //avl.add(7);
         } catch (Exception ex) {
             Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
         }
