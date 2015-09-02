@@ -6,6 +6,8 @@
 package org.proj1.structures;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,20 +20,28 @@ public class Prueba extends javax.swing.JFrame {
     /**
      * Creates new form Prueba
      */
-    AVLTree avl = new AVLTree();
+    //AVLTrees avl = new AVLTrees();
+    AvlTree avl = new AvlTree();
     public Prueba() {
         try {
             initComponents();
-            avl.add(30);
+            avl.insert(30);
+            avl.insert(10);
+            avl.insert(10);
+            avl.insert(34);
+            avl.insert(90);
+            avl.insert(100);
+            avl.insert(150);
+            /*avl.add(30);
             avl.add(10);
             avl.add(34);
             avl.add(90);
             avl.add(100);
-            //avl.add(150);
+            avl.add(150);
             //avl.add(10);
-            //avl.add(1);
-            //avl.add(5);
-            //avl.add(7);
+            avl.add(1);
+            avl.add(5);
+            avl.add(7);*/
         } catch (Exception ex) {
             Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -79,7 +89,12 @@ public class Prueba extends javax.swing.JFrame {
 
     private void btnAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAVLActionPerformed
         try {
-            this.avl.printGraphviz();
+            ArrayList a = avl.inorder();
+            for (Iterator it = a.iterator(); it.hasNext();) {
+                AvlNode v = (AvlNode)it.next();
+                System.out.println(v.key);
+            }
+            avl.printGraphviz();
         } catch (IOException ex) {
             Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
         }

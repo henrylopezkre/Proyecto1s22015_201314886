@@ -16,12 +16,12 @@ import java.util.logging.Logger;
  *
  * @author Sorge
  */
-public class AVLTree {
+public class AVLTrees {
     private int count;
     private TreeNode rootNode;
     private FileWriter fileWriter = null;
     private PrintWriter printWriter = null;
-    public AVLTree(){
+    public AVLTrees(){
         this.rootNode = null;
         this.count = 0;
     }
@@ -156,22 +156,25 @@ public class AVLTree {
                 case 2:
                     TreeNode n1 = auxNode.rightNode;
                     if(n1.balanceFactor == +1){
-                        TreeNode auxRoot = auxNode.fatherNode;
+                        TreeNode auxRoot = null;
+                        if(auxNode.object != auxNode.fatherNode.object){
+                             auxRoot = auxNode.fatherNode;
+                        }
                         TreeNode n = node;
                         TreeNode aux = null;
                         if(n1.leftNode != null){
                             aux = n1.leftNode;
+                            n1.leftNode = null;
                         }
                         auxNode = rotationRR(n, n1);
-                        if(auxRoot.object != this.rootNode.object){
-                            System.out.println("Si entro acá");
+                        if(auxRoot != null){
                             auxRoot.rightNode = auxNode;
                             auxNode.fatherNode = auxRoot;
                         }
                         if(aux != null){
                             this.add(aux.object);
                         }
-                        System.out.println("Esto devuelvo1: " + auxNode.object);
+                        this.balance(this.rootNode);
                     }else{
                         TreeNode n = auxNode.fatherNode;
                         auxNode.rightNode = equilibrate(auxNode.rightNode);
