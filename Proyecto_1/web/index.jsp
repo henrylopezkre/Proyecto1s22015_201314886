@@ -9,11 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link href="css/kube.css" rel="stylesheet" type="text/css">
+        <title>Proyecto 1</title>
+        <link href="css/kube.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/main.css" rel="stylesheet" type="text/css" media="screen">
     </head>
-    <body>
-        <div>
+    <body class="main-content">
+        <!--<div id="header-content">
+            <div class="float-left">
+                <a runat="server" href="/" id="lnkEslogan" class="noline">
+                    <p class="site-title">
+                        PROYECTO 1
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div id="main">
             <form method="post" action="" class="forms">
                 <label>
                     Email
@@ -29,5 +39,8 @@
                 </p>
             </form>
         </div>
+        <div id="footer">
+            
+        </div>-->
     </body>
 </html>
