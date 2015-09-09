@@ -11,6 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Proyecto 1</title>
         <link href="css/kube.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/960.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/960_12_col.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/reset.css" rel="stylesheet" type="text/css" media="screen">
         <link href="css/main.css" rel="stylesheet" type="text/css" media="screen">
     </head>
     <body class="main-content">
