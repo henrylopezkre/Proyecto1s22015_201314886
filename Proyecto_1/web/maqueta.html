@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Proyecto 1</title>
+        <link href="css/kube.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/960.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/960_12_col.css" rel="stylesheet" type="text/css">
+        <link href="css/reset.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/main.css" rel="stylesheet" type="text/css" media="screen">
+    </head>
+    <style type="text/css">
+        .container_12{
+            background-color: #f2f2f2;
+            font: 0.75em/1.5em  Rockwell, Consolas, "Courier New", Courier, monospace;
+        }
+        header{
+            height: 150px;
+        }
+        article{
+            height: 400px;            
+        }
+        footer{
+            height: 50px;
+            border-top: 5px solid #333333;
+        }
+        .center { 
+            margin: auto;
+            text-align: center; 
+        }
+        .grid_4{
+            height: 150px;
+        }
+        .grid_8{
+            height: 150px;
+        }
+        .site-title {
+            color: #000000;
+            font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+            font-size: 3.3em;
+            margin: 10px 10px;
+            text-decoration: none;
+        }
+        .site-title:hover, .site-title:active {
+            background: none;
+            color: #2575ed;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+        } 
+        .menu-container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            width: 70%;
+        }
+        /* common and top level styles */
+        #nav span {
+            display: none;
+        }
+        #nav, #nav ul {
+            list-style: none outside none;
+            margin: 0;
+            padding: 0;
+        }
+        #nav {
+            background-color: #f2f2f2;
+            border-bottom: 5px solid #333333;
+            float: left;
+            margin-left: 1%;
+            margin-right: 1%;
+            position: relative;
+            width: 98%;
+        }
+        #nav ul.subs {
+            background-color: #FFFFFF;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            color: #333333;
+            display: none;
+            left: 0;
+            padding: 2%;
+            position: relative;
+            top: 54px;
+            width: 96%;
+        }
+        #nav > li {
+            border-bottom: 5px solid transparent;
+            float: right;
+            margin-bottom: -5px;
+            text-align: left;
+            -moz-transition: all 300ms ease-in-out 0s;
+            -ms-transition: all 300ms ease-in-out 0s;
+            -o-transition: all 300ms ease-in-out 0s;
+            -webkit-transition: all 300ms ease-in-out 0s;
+            transition: all 300ms ease-in-out 0s;
+        }
+        #nav li a {
+            display: block;
+            text-decoration: none;
+            -moz-transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;
+            -ms-transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;
+            -o-transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;
+            -webkit-transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;
+            transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;
+            white-space: normal;
+        }
+        #nav > li > a {
+            color: #333333;
+            display: block;
+            font-size: 1.3em;
+            line-height: 49px;
+            padding: 0 15px;
+            text-transform: uppercase;
+        }
+        #nav > li:hover > a, #nav > a:hover {
+            background-color: #2575ed;
+            color: #FFFFFF;
+        }
+        #nav li.active > a {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        /* submenu */
+        #nav li:hover ul.subs {
+            display: block;
+        }
+        #nav ul.subs > li {
+            display: inline-block;
+            float: none;
+            padding: 10px 1%;
+            vertical-align: top;
+            width: 33%;
+        }
+        #nav ul.subs > li a {
+            color: #777777;
+            line-height: 20px;
+        }
+        #nav ul li a:hover {
+            color: #2575ed;
+        }
+        #nav ul.subs > li > a {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        #nav ul.subs > li li {
+            float: none;
+            padding-left: 8px;
+            -moz-transition: padding 150ms ease-out 0s;
+            -ms-transition: padding 150ms ease-out 0s;
+            -o-transition: padding 150ms ease-out 0s;
+            -webkit-transition: padding 150ms ease-out 0s;
+            transition: padding 150ms ease-out 0s;
+        }
+        #nav ul.subs > li li:hover {
+            padding-left: 15px;
+        }
+        /* responsive rules*/
+        @media all and (max-width : 980px) {
+            #nav > li {
+                float: none;
+                border-bottom: 0;
+                margin-bottom: 0;
+            }
+            #nav ul.subs {
+                position: relative;
+                top: 0;
+            }
+            #nav li:hover ul.subs {
+                display: none;
+            }
+            #nav li #s1:target + ul.subs,
+            #nav li #s2:target + ul.subs {
+                display: block;
+            }
+
+            #nav ul.subs > li {
+                display: block;
+                width: auto;
+            }
+        }
+    </style>
+    <body class="container_12">
+        <header class="grid_12 units-container">
+            <div class="units-rows">
+                <div class="unit-30 left">
+                    <a class="site-title">
+                       <p>PROYECTO 1</p>
+                    </a>
+                </div>
+                <div class="unit-70 right menu-container">
+                    <ul id="nav">
+                        <li><a href="#">Iniciar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="clear"></div>
+        <form action="" method="post" class="forms text-centered">
+            <article>
+                <label style="margin: 5px 0;">Email</label>
+                <input type="text" class="width-40 smaller center" />
+                <label style="margin: 5px 0;">Password</label>
+                <input type="password" class="width-40 smaller center" />
+                <p style="margin: 10px 0;">
+                    <button class="btn btn-outline btn-blue btn-smaller">Entrar</button>
+                    <button class="btn btn-smaller">Cancelar</button>
+                </p>
+            </article>
+        </form>
+        <div class="clear"></div>
+        <footer>
+            Hola
+        </footer>
+        
+        <!--<div id="header-content">
+            <div class="float-left">
+                <a runat="server" href="/" id="lnkEslogan" class="noline">
+                    <p class="site-title">
+                        PROYECTO 1
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div id="main">
+            <form method="post" action="" class="forms">
+                <label>
+                    Email
+                    <input type="email" name="user-email" class="width-50" />
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="user-password" class="width-50" />
+                </label>
+                <p>
+                    <button class="btn btn-blue">Log in</button>
+                    <button class="btn">Cancel</button>
+                </p>
+            </form>
+        </div>
+        <div id="footer">
+            
+        </div>-->
+    </body>
+</html>
