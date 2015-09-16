@@ -42,36 +42,32 @@ public class AvlTree {
   */
  public void insertAVL(AvlNode p, AvlNode q) {
   // If  node to compare is null, the node is inserted. If the root is null, it is the root of the tree.
-  if(p==null) {
-   this.root=q;
-  } else {
-   
+    if(p == null) {
+        this.root=q;
+    }else{
    // If compare node is smaller, continue with the left node
-   if(q.key<p.key) {
-    if(p.left==null) {
-     p.left = q;
-     q.parent = p;
-     
-     // Node is inserted now, continue checking the balance
-     recursiveBalance(p);
-    } else {
-     insertAVL(p.left,q);
+        if(q.key < p.key) {
+            if(p.left == null) {
+                p.left = q;
+                q.parent = p;
+                // Node is inserted now, continue checking the balance
+                recursiveBalance(p);
+            }else{
+                insertAVL(p.left,q);
+            }
+        }else if(q.key>p.key){
+            if(p.right==null){
+                p.right = q;
+                q.parent = p;
+            // Node is inserted now, continue checking the balance
+                recursiveBalance(p);
+        }else{
+            insertAVL(p.right,q);
+        }
+        }else{
+            //do nothing: This node already exists
+        }
     }
-    
-   } else if(q.key>p.key) {
-    if(p.right==null) {
-     p.right = q;
-     q.parent = p;
-     
-     // Node is inserted now, continue checking the balance
-     recursiveBalance(p);
-    } else {
-     insertAVL(p.right,q);
-    }
-   } else {
-    // do nothing: This node already exists
-   }
-  }
  }
  
  /**
